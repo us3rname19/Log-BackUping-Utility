@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Devs:
+# Nikita kolushov <cod3r@programmer.net>
+#
+# Log-BackUping Utility is free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+# You can get a copy of the license at www.gnu.org/licenses
+#
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+function check_root {
+
+    if [ $(id -u) -ne 0 ]; then
+		echo -e -e "\n$GREEN[$RED!$GREEN] $RED You aren't admin use sudo or root!$RESETCOLOR\n" >&2
+		exit 1
+	fi
+
+}
+
+function help {
+    
+    less /usr/bin/lbckp_/help.txt;$0 
+}
+
+function start {
+    
+    check_root
+    /usr/bin/lbckp_/scripts/start;$0
+}
+
+function clean {
+    
+    check_root
+    /usr/bin/lbckp_/scripts/clean;$0
+}
+
+function startconf {
+    
+    check_root
+    /usr/bin/lbckp_/scripts/startconf;$0
+}
+
+function shedule {
+    
+    check_root
+    /usr/bin/lbckp_/scripts/shedule;$0
+}
+
+case "$1" in
+    help)help
+    ;;
+    start)start
+    ;;
+	clean)clean
+    ;;
+    startconf)startconf
+    ;;
+    shedule)shedule
+    ;;
+    *)
+
+echo -e "\n\n
+$BLUE             ──= Log-BackUping Utility =──
+
+        $CYAN$""$WHITE""lbckp $CYAN{$WHITE""help$CYAN|$WHITE""start$CYAN|$WHITE""clean$CYAN|$WHITE""...$CYAN""}
+    
+       $CYAN help$BLUE ────$WHITE Show instructions
+       $CYAN start$BLUE ───$WHITE Start backuping all specified directories  
+       $CYAN clean$BLUE ───$WHITE Сlean logging directories (deleting all files)
+
+	  $BLUE ----[ Configuration features ]----
+       $CYAN startconf$BLUE ─$WHITE Start parameter configuration
+       $CYAN shedule$BLUE ───$WHITE Setup backuping in cron scheduler
+$RESETCOLOR
+
+" >&2
+exit 1
+;;
+esac
+
+echo -e $RESETCOLOR
+exit 0

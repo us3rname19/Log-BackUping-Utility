@@ -1,0 +1,60 @@
+#!/bin/bash
+
+source /usr/bin/lbckp_/conf/bckp_fold.conf
+source /usr/bin/lbckp_/conf/fold_list.conf
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+echo -e "$GREEN
+Each task to run has to be defined through a single line
+indicating with different fields when the task will be run
+and what command to run for the task
+
+To define the time you can provide concrete values for
+minute (m), hour (h), day of month (dom), month (mon),
+and day of week (dow) or use '*' in these fields (for 'any').# 
+Notice that tasks will be started based on the cron's system
+daemon's notion of time and timezones.
+
+Output of the crontab jobs (including errors) is sent through
+email to the user the crontab file belongs to (unless redirected).
+
+For more information see the manual pages of crontab(5) and cron(8)
+m h  dom mon dow   command
+$RESETCOLOR"
+
+read -p "Enter the days of the week from 1-7 for the run schedule : " day_of_the_week
+if [ -z $day_of_the_week ]; then
+    day_of_the_week="*"
+fi
+
+read -p "Enter months from 1-12 for the run schedule : " month
+if [ -z $month ]; then
+    month="*"
+fi
+
+read -p "Enter day in month from 1-31 for the run schedule : " day
+if [ -z $day ]; then
+    day="*"
+fi
+
+read -p "Enter hour from 0-24 for the run schedule : " hour
+if [ -z $hour ]; then
+    hour="*"
+fi
+
+read -p "Enter min from 0-59 for the run schedule : " min
+if [ -z $min ]; then
+    min="*"
+fi
+
+croncmd="/etc/init.d/lbckp start > 2>&1"
+cronjob="$min $hour $day $month $day_of_the_week $croncmd"
+( crontab -l | grep -v -F "$croncmd" ) | crontab -
+( crontab -l | grep -v -F "$croncmd" ; echo "$cronjob" ) | crontab -
+

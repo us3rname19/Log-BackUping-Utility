@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source /usr/bin/lbckp_/conf/bckp_fold.conf
+source /usr/bin/lbckp_/conf/fold_list.conf
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+echo -e "$RED-Deleting logs start...$RESETCOLOR\n"
+
+for folder in ${logpath[@]}
+    do
+        if [ -n "$folder" ]; then
+            echo -e "$GREEN-Cleaning $folder ...$RESETCOLOR\n"
+            rm -rf $folder/*
+        fi
+    done
+
+echo -e "$RED-Deleting logs complited succesfully...$RESETCOLOR\n"

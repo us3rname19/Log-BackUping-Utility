@@ -1,0 +1,13 @@
+lbckp: lbckp {help|start|clean|...}
+
+Log-BackUping Utility
+
+Options:
+
+help ────── Show instructions
+start ───── Start backuping all specified directories  
+clean ───── Сlean logging directories (deleting all files)
+startconf ─ Start parameter configuration
+shedule ─── Setup backuping in cron scheduler
+
+Exit: Cntrl+Z

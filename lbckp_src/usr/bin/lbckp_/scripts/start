@@ -1,0 +1,44 @@
+#!/bin/bash
+
+source /usr/bin/lbckp_/conf/bckp_fold.conf
+source /usr/bin/lbckp_/conf/fold_list.conf
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+dateto=$(date -d "-30 days" +'%Y-%m-%d')
+datefrom=$(date -d "-37 days" +'%Y-%m-%d')
+currentyear=$(date -d "-30 days" +"%Y")
+
+echo -e "$RED-Backuping logs start...$RESETCOLOR\n"
+
+
+if [ ! -d "$backupPath/$currentyear" ]; then
+	mkdir $backupPath/$currentyear
+fi
+
+for folder in ${logpath[@]}
+    do
+        if [ -n "$folder" ]; then
+            echo -e "$GREEN-Backuping $folder ...$RESETCOLOR\n"
+            target=$backupPath/$currentyear/$folder
+            mkdir -p $target
+            arch_file_name=archive_$folder_${datefrom}_${dateto}.tar.gz
+            find $logpath -mtime +$numOfDays -not -name *.pid -print | tar -zcvf $target/$arch_file_name --files-from -
+            
+            if [ -f "$target/$arch_file_name" ]; then
+            
+                echo -e "$GREEN-Deleting old logs in $logpath...$RESETCOLOR\n"
+                find $logpath -type f -mtime +$numOfDays -not -name *.pid -delete
+                
+            else echo -e "$RED-File $arch_file_name not found. Error in backuping...$RESETCOLOR\n"
+            fi
+        fi
+    done
+
+echo -e "$RED-Backuping logs complited succesfully...$RESETCOLOR\n"
+
