@@ -1,0 +1,25 @@
+#!/bin/bash
+source /usr/bin/lbckp_/conf/bckp_fold.conf
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+export LOG_PATH="/usr/bin/lbckp_/logs"
+
+last_log=`ls -t $LOG_PATH | head -1`
+
+echo -e "
+$CYAN 
+Statistic $backupPath:
+Last backuping: $BLUE`date -r $LOG_PATH/$last_log`
+$CYAN────────────────────────────────────────────────
+$CYAN1 Filesys        Size  Used Avail Use% Mounted on
+$CYAN─────────       ────  ──── ───── ──── ──────────$BLUE
+`df -h $backupPath*`
+$CYAN────────────────────────────────────────────────
+Size     Path$BLUE
+`du -scBM $backupPath/*`
+$CYAN────────────────────────────────────────────────
+"

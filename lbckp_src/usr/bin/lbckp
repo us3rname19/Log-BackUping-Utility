@@ -1,1 +1,1 @@
-/etc/init.d/lbckp $1
+/etc/init.d/lbckp $1 $2
