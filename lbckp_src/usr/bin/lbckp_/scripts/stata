@@ -1,25 +1,45 @@
 #!/bin/bash
 source /usr/bin/lbckp_/conf/bckp_fold.conf
+
 export WHITE='\033[1;97m'
 export CYAN='\033[1;96m'
 export BLUE='\033[1;94m'
 export GREEN='\033[1;92m'
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
-export LOG_PATH="/usr/bin/lbckp_/logs"
+export log_path='/usr/bin/lbckp_/logs/'
 
-last_log=`ls -t $LOG_PATH | head -1`
+cron_out="$BLUE""NO"
+logd_out="$RED No data found."
+
+cron_ex=`grep -e 'lbckp start' -R /var/spool/cron/*`
+if [[ $cron_ex ]]; then 
+    cron_out="$RED""YES"
+fi
+
+log_ex=`ls $log_path`
+if [[ $log_ex ]]; then 
+    logd_out=`find $log_path -printf '%Tc\n' | sort -n -r | cut -d' ' -f2- | head -1 `
+fi
+
+df -h $backupPath* > ./size 
+du -scBM $backupPath/* > ./volume
 
 echo -e "
-$CYAN 
-Statistic $backupPath:
-Last backuping: $BLUE`date -r $LOG_PATH/$last_log`
-$CYAN────────────────────────────────────────────────
-$CYAN1 Filesys        Size  Used Avail Use% Mounted on
-$CYAN─────────       ────  ──── ───── ──── ──────────$BLUE
-`df -h $backupPath*`
-$CYAN────────────────────────────────────────────────
-Size     Path$BLUE
-`du -scBM $backupPath/*`
-$CYAN────────────────────────────────────────────────
-"
+$BLUE 
+                    --Statistic--
+
+        $CYAN""Backup store path: $BLUE$backupPath:
+        $CYAN""Last backuping: $BLUE$logd_out
+        $CYAN""Backuping sheduled: $cron_out
+        $CYAN────────────────────────────────────────────────
+`while read p; do 
+    echo "" \ \ \ \ \ \ \ \$p$BLUE"" 
+done < ./size;rm -f ./size`
+        $CYAN────────────────────────────────────────────────
+        Size     Path$BLUE
+`while read p; do
+    echo "" \ \ \ \ \ \ \ \$p""
+done < ./volume;rm -f ./volume`
+        $CYAN────────────────────────────────────────────────
+        "

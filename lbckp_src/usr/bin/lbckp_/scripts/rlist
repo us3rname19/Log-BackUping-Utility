@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source /usr/bin/lbckp_/conf/ansible_list.conf
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+echo -e "$BLUE""Remote hosts list:$RESETCOLOR"
+if [[ -z ${remote_hosts[@]} ]]; then
+    echo -e "$RED""No data found."
+else 
+    for host in ${remote_hosts[@]}
+        do
+            echo -e "$GREEN$host"
+        done
+fi

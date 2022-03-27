@@ -19,7 +19,7 @@ export RESETCOLOR='\033[1;00m'
 export numDayDel=${2:-$numDayDel}
 date_hms=$(date -d "-30 days" +'%Y-%m-%d-%h-%m-%s')
 
-
+#access check(root only)
 function check_root {
 
     if [ $(id -u) -ne 0 ]; then
@@ -70,6 +70,30 @@ function stata {
     /usr/bin/lbckp_/scripts/stata;$0
 }
 
+function rlist {
+    
+    check_root
+    /usr/bin/lbckp_/scripts/rlist;$0
+}
+
+function rstrt { check_root
+
+}
+
+function rstat { 
+    
+    check_root
+    /usr/bin/lbckp_/scripts/rstat;$0
+}
+
+function rcln { check_root
+
+}
+
+function rdell { check_root
+
+}
+
 case "$1" in
     help)help
     ;;
@@ -77,7 +101,7 @@ case "$1" in
     ;;
 	clean)clean
     ;;
-    startconf)startconf
+    startcnf)startconf
     ;;
     shedule)shedule
     ;;
@@ -85,22 +109,40 @@ case "$1" in
     ;;
     stata)stata
     ;;
+    rlist)rlist
+    ;;
+    rstrt)rstrt
+    ;;
+    rstat)rstat
+    ;;
+    rcln)rcln
+    ;;
+    rdell)rdell
+    ;;
     *)
 
+#Main features menu
 echo -e "\n\n
 $BLUE             ──= Log-BackUping Utility =──
 
         $CYAN$""$WHITE""lbckp $CYAN{$WHITE""help$CYAN|$WHITE""start$CYAN|$WHITE""clean$CYAN|$WHITE""...$CYAN""}
     
-       $CYAN help$BLUE ────$WHITE Show instructions
-       $CYAN start$BLUE ───$WHITE Start backuping all specified directories  
-       $CYAN clean$BLUE ───$WHITE Сlean logging directories (deleting all files)
-       $CYAN stata$BLUE ───$WHITE Show logging statistic
-       $CYAN delld$BLUE ───$WHITE Deleting old archives
+       $CYAN help$BLUE ─────$WHITE Show instructions
+       $CYAN start$BLUE ────$WHITE Start backuping all specified directories  
+       $CYAN clean$BLUE ────$WHITE Сlean logging directories [$RED""deleting all files$RESETCOLOR]
+       $CYAN stata$BLUE ────$WHITE Show logging statistic
+       $CYAN delld$BLUE ────$WHITE $RED""Deleting old archives$WHITE [default: 180 days]
 
 	  $BLUE ----[ Configuration features ]----
-       $CYAN startconf$BLUE ─$WHITE Start parameter configuration
-       $CYAN shedule$BLUE ───$WHITE Setup backuping in cron scheduler
+       $CYAN startcnf$BLUE ─$WHITE Start parameter configuration
+       $CYAN shedule$BLUE ──$WHITE Setup backuping in cron scheduler
+
+     $BLUE     ----[ Ansible[remote] features ]----
+       $CYAN rlist$BLUE ────$WHITE Remote hosts list
+       $CYAN rstrt$BLUE ────$WHITE Start backuping remote hosts
+       $CYAN rstat$BLUE ────$WHITE Show remote logging statistic
+       $CYAN rcln$BLUE ─────$WHITE Сlean logging remote directories [$RED""deleting all files$RESETCOLOR]
+       $CYAN rdell$BLUE ────$WHITE $RED""Deleting old remote archives$WHITE [default: 180 days]
 $RESETCOLOR
 
 " >&2
