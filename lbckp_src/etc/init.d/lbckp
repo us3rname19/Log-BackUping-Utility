@@ -60,7 +60,7 @@ case "$1" in
     ;;
 	clean)clean
     ;;
-    startcnf)startconf
+    strtcnf)startconf
     ;;
     shedule)shedule
     ;;
@@ -74,7 +74,7 @@ case "$1" in
     ;;
     rstat)rstat
     ;;
-    rcln)rcln
+    rclnn)rcln
     ;;
     rdell)rdell
     ;;
@@ -84,24 +84,24 @@ case "$1" in
 echo -e "\n\n
 $BLUE             ──= Log-BackUping Utility =──
 
-        $CYAN$""$WHITE""lbckp $CYAN{$WHITE""help$CYAN|$WHITE""start$CYAN|$WHITE""clean$CYAN|$WHITE""...$CYAN""}
+        $CYAN$""$WHITE""lbckp $CYAN{$WHITE""help$CYAN|$WHITE""start$CYAN|$WHITE""clean$CYAN|$WHITE""stata$CYAN|$WHITE""...$CYAN""}
     
        $CYAN help$BLUE ─────$WHITE Show instructions
-       $CYAN start$BLUE ────$WHITE Start backuping all specified directories  
-       $CYAN clean$BLUE ────$WHITE Сlean logging directories [$RED""deleting all files$RESETCOLOR]
-       $CYAN stata$BLUE ────$WHITE Show logging statistic
-       $CYAN delld$BLUE ────$WHITE $RED""Deleting old archives$WHITE [default: 180 days]
+       $CYAN start$BLUE ────$WHITE Start backuping directories  
+       $CYAN clean$BLUE ────$WHITE Сlean directories [$RED""Del all files$RESETCOLOR]
+       $CYAN stata$BLUE ────$WHITE Show statistic
+       $CYAN delld$BLUE ────$WHITE $RED""Deleting old archives$WHITE [+180 days]
 
 	  $BLUE ----[ Configuration features ]----
-       $CYAN startcnf$BLUE ─$WHITE Start parameter configuration
+       $CYAN strtcnf$BLUE ──$WHITE Start parameter configuration
        $CYAN shedule$BLUE ──$WHITE Setup backuping in cron scheduler
 
      $BLUE     ----[ Ansible[remote] features ]----
        $CYAN rlist$BLUE ────$WHITE Remote hosts list
        $CYAN rstrt$BLUE ────$WHITE Start backuping remote hosts
-       $CYAN rstat$BLUE ────$WHITE Show remote logging statistic
-       $CYAN rcln$BLUE ─────$WHITE Сlean logging remote directories [$RED""deleting all files$RESETCOLOR]
-       $CYAN rdell$BLUE ────$WHITE $RED""Deleting old remote archives$WHITE [default: 180 days]
+       $CYAN rstat$BLUE ────$WHITE Show remote hosts statistic
+       $CYAN rclnn$BLUE ────$WHITE Сlean remote directories [$RED""Del all files$RESETCOLOR]
+       $CYAN rdell$BLUE ────$WHITE $RED""Deleting old remote archives$WHITE [+180 days]
 $RESETCOLOR
 
 " >&2
