@@ -8,15 +8,14 @@ export BLUE='\033[1;94m'
 export GREEN='\033[1;92m'
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
-date_hms=$(date -d "-30 days" +'%Y-%m-%d-%h-%m-%s')
 
-echo -e "$BLUE""-Starting backuping logs on remote hosts...$RESETCOLOR"
+echo -e "$BLUE""-Deleting on remote hosts very old archives...$RESETCOLOR"
 if [[ -z ${remote_hosts[@]} ]]; then
     echo -e "$RED""No hosts to connect."
 else 
     for host in ${remote_hosts[@]}
         do
             echo -e "$BLUE$host:"
-            echo -e "`ssh -tt $user@$host ""sudo /usr/bin/lbckp_/scripts/start | tee /usr/bin/lbckp_/logs/start_${date_hms}.log;""`"
+            echo -e "`ssh -tt $user@$host ""sudo /usr/bin/lbckp_/scripts/delld $1""`"
         done
 fi

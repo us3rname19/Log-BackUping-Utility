@@ -14,31 +14,31 @@ dateto=$(date -d "-30 days" +'%Y-%m-%d')
 datefrom=$(date -d "-37 days" +'%Y-%m-%d')
 currentyear=$(date -d "-30 days" +"%Y")
 
-echo -e "$RED-Backuping logs start...$RESETCOLOR\n"
+echo -e "$RED-Backuping logs start...$RESETCOLOR"
 
 
-if [ ! -d "$backupPath/$currentyear" ]; then
-	mkdir $backupPath/$currentyear
+if [[ ! -d ${backupPath}/${currentyear} ]]; then
+	mkdir ${backupPath}/${currentyear}
 fi
 
 for folder in ${logpath[@]}
     do
-        if [ -n "$folder" ]; then
-            echo -e "$GREEN-Backuping $folder ...$RESETCOLOR\n"
-            target=$backupPath/$currentyear/$folder
-            mkdir -p $target
-            arch_file_name=archive_$folder_${datefrom}_${dateto}.tar.gz
-            find $logpath -mtime +$numOfDays -not -name *.pid -print | tar -zcvf $target/$arch_file_name --files-from -
+        if [[ -n $folder ]]; then
+            echo -e "$GREEN-Backuping `hostname`:${folder} ...$RESETCOLOR"
+            target=${backupPath}/${currentyear}${folder}
+            mkdir -p ${target}
+            arch_file_name=archive__${datefrom}_${dateto}.tar.gz
+            find ${logpath} -mtime +${numOfDays} -not -name *.pid -print | tar -zcvf ${target}/${arch_file_name} --files-from -
             
-            if [ -f "$target/$arch_file_name" ]; then
+            if [[ -f ${target}/${arch_file_name} ]]; then
             
-                echo -e "$GREEN-Deleting old logs in $logpath...$RESETCOLOR\n"
-                find $logpath -type f -mtime +$numOfDays -not -name *.pid -delete
+                echo -e "$GREEN-Deleting old logs in `hostname`:${logpath}...$RESETCOLOR"
+                find ${logpath} -type f -mtime +${numOfDays} -not -name *.pid -delete
                 
-            else echo -e "$RED-File $arch_file_name not found. Error in backuping...$RESETCOLOR\n"
+            else echo -e "$RED-File ${arch_file_name} not found. Error in backuping...$RESETCOLOR"
             fi
         fi
     done
 
-echo -e "$RED-Backuping logs complited succesfully...$RESETCOLOR\n"
+echo -e "$RED-Backuping logs complited succesfully...$RESETCOLOR"
 

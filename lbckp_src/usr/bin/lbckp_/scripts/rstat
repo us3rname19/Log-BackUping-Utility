@@ -15,6 +15,7 @@ if [[ -z ${remote_hosts[@]} ]]; then
 else 
     for host in ${remote_hosts[@]}
         do
+            echo -e "$BLUE$host:"
             echo -e "`ssh -tt $user@$host ""sudo /usr/bin/lbckp_/scripts/stata""`"
         done
 fi

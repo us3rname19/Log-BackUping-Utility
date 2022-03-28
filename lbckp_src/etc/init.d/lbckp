@@ -29,70 +29,29 @@ function check_root {
 
 }
 
-function help {
-    
-    less /usr/bin/lbckp_/help.txt;$0 
-}
+function help { less /usr/bin/lbckp_/help.txt; $0; }
 
-function start {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/start | tee /usr/bin/lbckp_/logs/start_${date_hms}.log;$0
-}
+function start { check_root; /usr/bin/lbckp_/scripts/start | tee /usr/bin/lbckp_/logs/start_${date_hms}.log; $0; }
 
-function clean {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/clean;$0
-}
+function clean { check_root; /usr/bin/lbckp_/scripts/clean; $0;}
 
-function startconf {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/startconf;$0
-}
+function startconf { check_root; /usr/bin/lbckp_/scripts/startconf; $0; }
 
-function shedule {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/shedule;$0
-}
+function shedule { check_root; /usr/bin/lbckp_/scripts/shedule; $0; }
 
-function delld {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/delld $numDayDel;$0
-}
+function delld { check_root; /usr/bin/lbckp_/scripts/delld ${numDayDel}; $0; }
 
-function stata {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/stata;$0
-}
+function stata { check_root; /usr/bin/lbckp_/scripts/stata; $0; }
 
-function rlist {
-    
-    check_root
-    /usr/bin/lbckp_/scripts/rlist;$0
-}
+function rlist { check_root; /usr/bin/lbckp_/scripts/rlist; $0; }
 
-function rstrt { check_root
+function rstrt { check_root; /usr/bin/lbckp_/scripts/rstrt; $0; }
 
-}
+function rstat { check_root; /usr/bin/lbckp_/scripts/rstat; $0; }
 
-function rstat { 
-    
-    check_root
-    /usr/bin/lbckp_/scripts/rstat;$0
-}
+function rcln { check_root; /usr/bin/lbckp_/scripts/rclean; $0; }
 
-function rcln { check_root
-
-}
-
-function rdell { check_root
-
-}
+function rdell { check_root; /usr/bin/lbckp_/scripts/rdell ${numDayDel}; $0; }
 
 case "$1" in
     help)help

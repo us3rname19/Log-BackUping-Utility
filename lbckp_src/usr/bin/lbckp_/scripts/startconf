@@ -1,0 +1,26 @@
+#!/bin/bash
+
+export WHITE='\033[1;97m'
+export CYAN='\033[1;96m'
+export BLUE='\033[1;94m'
+export GREEN='\033[1;92m'
+export RED='\033[1;91m'
+export RESETCOLOR='\033[1;00m'
+
+function edit {
+
+    echo -e "$BLUE""Edit $1 settings?(Y/N)$RESETCOLOR"
+    read -p ": " -n 1 answer
+    if [[ $answer = [Yy] ]]; then
+        vi /usr/bin/lbckp_/conf/$2
+    elif  [[ $answer = [Nn] ]]; then 
+        echo ""
+    else echo -e "Error!"; exit 0;
+    fi
+
+}
+
+edit "storage" "bckp_fold.conf"
+edit "ansible" "ansible_list.conf"
+edit "backuping" "fold_list.conf"
+
