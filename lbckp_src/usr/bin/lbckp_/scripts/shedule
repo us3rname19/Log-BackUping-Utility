@@ -27,7 +27,6 @@ email to the user the crontab file belongs to (unless redirected).
 For more information see the manual pages of crontab(5) and cron(8)
 m h  dom mon dow   command
 $RESETCOLOR"
-
 read -p "Enter the days of the week from 1-7 for the run schedule : " day_of_the_week
 if [ -z $day_of_the_week ]; then
     day_of_the_week="*"

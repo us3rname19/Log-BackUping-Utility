@@ -17,7 +17,10 @@ export GREEN='\033[1;92m'
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
 export numDayDel=${2:-$numDayDel}
-date_hms=$(date -d "-30 days" +'%Y-%m-%d-%h-%m-%s')
+date_hms=$(date +'%Y-%m-%d-%h-%m-%s')
+export HOME_PATH='/usr/bin/lbckp_'
+export LOGS_PATH='/usr/bin/lbckp_/logs'
+LOGS="${LOGS_PATH}/${1}_${date_hms}.log"
 
 #access check(root only)
 function check_root {
@@ -29,54 +32,26 @@ function check_root {
 
 }
 
-function help { less /usr/bin/lbckp_/help.txt; $0; }
+function dosmth {
 
-function start { check_root; /usr/bin/lbckp_/scripts/start | tee /usr/bin/lbckp_/logs/start_${date_hms}.log; $0; }
+  check_root
+  ${HOME_PATH}/scripts/${1} | tee ${LOGS}; $0
 
-function clean { check_root; /usr/bin/lbckp_/scripts/clean; $0;}
+}
 
-function startconf { check_root; /usr/bin/lbckp_/scripts/startconf; $0; }
+function dell {
 
-function shedule { check_root; /usr/bin/lbckp_/scripts/shedule; $0; }
+  check_root
+  ${HOME_PATH}/scripts/${1} ${numDayDel}| tee ${LOGS}; $0 
 
-function delld { check_root; /usr/bin/lbckp_/scripts/delld ${numDayDel}; $0; }
-
-function stata { check_root; /usr/bin/lbckp_/scripts/stata; $0; }
-
-function rlist { check_root; /usr/bin/lbckp_/scripts/rlist; $0; }
-
-function rstrt { check_root; /usr/bin/lbckp_/scripts/rstrt; $0; }
-
-function rstat { check_root; /usr/bin/lbckp_/scripts/rstat; $0; }
-
-function rcln { check_root; /usr/bin/lbckp_/scripts/rclean; $0; }
-
-function rdell { check_root; /usr/bin/lbckp_/scripts/rdell ${numDayDel}; $0; }
+}
 
 case "$1" in
-    help)help
+    help)less $HOME_PATH/$1.txt; $0;
     ;;
-    start)start
+    start|clean|strtcnf|shedule|stata|rlist|rstrt|rstat|rclnn)dosmth $1
     ;;
-	clean)clean
-    ;;
-    strtcnf)startconf
-    ;;
-    shedule)shedule
-    ;;
-    delld)delld
-    ;;
-    stata)stata
-    ;;
-    rlist)rlist
-    ;;
-    rstrt)rstrt
-    ;;
-    rstat)rstat
-    ;;
-    rclnn)rcln
-    ;;
-    rdell)rdell
+    delld|rdell)dell $1
     ;;
     *)
 

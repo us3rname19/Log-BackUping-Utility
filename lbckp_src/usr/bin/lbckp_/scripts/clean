@@ -10,14 +10,14 @@ export GREEN='\033[1;92m'
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
 
-echo -e "$RED-Deleting logs start...$RESETCOLOR\n"
+echo -e "$RED-Deleting logs start...$RESETCOLOR"
 
 for folder in ${logpath[@]}
     do
         if [ -n "$folder" ]; then
-            echo -e "$GREEN-Cleaning $folder ...$RESETCOLOR\n"
+            echo -e "$GREEN-Cleaning $folder ...$RESETCOLOR"
             rm -rf $folder/*
         fi
     done
 
-echo -e "$RED-Deleting logs complited succesfully...$RESETCOLOR\n"
+echo -e "$RED-Deleting logs complited succesfully...$RESETCOLOR"

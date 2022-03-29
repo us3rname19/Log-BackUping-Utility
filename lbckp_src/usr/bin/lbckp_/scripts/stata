@@ -7,7 +7,7 @@ export BLUE='\033[1;94m'
 export GREEN='\033[1;92m'
 export RED='\033[1;91m'
 export RESETCOLOR='\033[1;00m'
-export log_path='/usr/bin/lbckp_/logs/'
+export log_path='/usr/bin/lbckp_/logs'
 
 cron_out="$BLUE""NO"
 logd_out="$RED No data found."
@@ -17,9 +17,9 @@ if [[ $cron_ex ]]; then
     cron_out="$RED""YES"
 fi
 
-log_ex=`ls $log_path`
+log_ex=`ls $log_path | grep start`
 if [[ $log_ex ]]; then 
-    logd_out=`find $log_path -printf '%Tc\n' | sort -n -r | cut -d' ' -f2- | head -1 `
+    logd_out=`find $log_path/start* -printf '%Tc\n' | sort -n -r | cut -d' ' -f2- | head -1 `
 fi
 
 df -h $backupPath* > ./size 
