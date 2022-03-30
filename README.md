@@ -2,9 +2,11 @@
 Utiltity for backuping logs in linux-based OS
 
 # Installation:
-
 ```bash
-sudo ./installer.sh
+unzip Log-BackUping-Utility-main.zip && cd Log-BackUping-Utility-main
+```
+```bash
+sudo chmod +x installer.sh && sudo ./installer.sh
 ```
 ```bash
 sudo lbckp
