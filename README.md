@@ -29,7 +29,8 @@ USAGE
 
 
 OPTIONAL ARGUMENTS
-  -start             Start backing up the directories specified in the settings.
+
+  -start             Start backuping the directories specified in the settings.
 
   -clean             Delete all logs in logging directories.  
 
