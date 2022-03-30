@@ -1,13 +1,37 @@
-lbckp: lbckp {help|start|clean|...}
+USAGE
+  sudo lbckp [start] [clean] [stata] [delld] [strtcnf]
+             [shedule] [rlist] [rstrt] [rstat] [rclnn] [rdell] 
 
-Log-BackUping Utility
 
-Options:
+OPTIONAL ARGUMENTS
+  -start             Start backing up the directories specified in the settings.
 
-help ────── Show instructions
-start ───── Start backuping all specified directories  
-clean ───── Сlean logging directories (deleting all files)
-startconf ─ Start parameter configuration
-shedule ─── Setup backuping in cron scheduler
+  -clean             Delete all logs in logging directories.  
+
+  -stata             Display storing and archiving logs statistics. 
+
+  -delld             Deleting old archives. In order to specify older 
+                     than which period to delete [delld n] 
+                     where n - number of days. 
+                     By default will delete older than 180 days.
+
+  -strtcnf           Start tool configuration.
+
+  -shedule           Setup backuping in cron scheduler.
+
+  -rlist             Display a list of remote hosts.
+
+  -rstrt             Start backuping logs on remote hosts.
+
+  -rstat             Show remote hosts statistics.
+
+  -rclnn             Delete all logs in logging directories 
+                     on remote hosts.
+
+  -rdell             Deleting old archives on remote hosts. 
+                     In order to specify older 
+                     than which period to delete [delld n] 
+                     where n - number of days. 
+                     By default will delete older than 180 days.
 
 Exit: Cntrl+Z
