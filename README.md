@@ -6,11 +6,18 @@
 ### -Showing statistic
 
 # Installation:
-```bash
-$ unzip Log-BackUping-Utility-main.zip && cd Log-BackUping-Utility-main
-$ sudo chmod +x installer.sh && sudo ./installer.sh
 ```
-```bash
+$ git clone git@github.com:us3rname19/Log-BackUping-Utility.git && cd Log-BackUping-Utility-main
+```
+## OR
+```
+$ unzip Log-BackUping-Utility-main.zip && cd Log-BackUping-Utility-main
+```
+## THEN
+```
+$ sudo chmod +x installer.sh && sudo ./installer.sh
+
+```
 $ sudo lbckp
 ```
 
