@@ -18,9 +18,9 @@ $ unzip Log-BackUping-Utility-main.zip && cd Log-BackUping-Utility-main
 $ sudo chmod +x installer.sh && sudo ./installer.sh
 
 ```
+```
 $ sudo lbckp
 ```
-
 ![Screenshot at 2022-03-28 21-02-52](https://user-images.githubusercontent.com/43719011/160384873-3d89b987-8641-4ab1-971d-8e2d141562a4.png)
 
 ```bash
