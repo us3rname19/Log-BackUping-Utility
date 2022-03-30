@@ -4,6 +4,7 @@ USAGE
 
 
 OPTIONAL ARGUMENTS
+
   -start             Start backuping directories specified in the settings.
 
   -clean             Delete all logs in logging directories.  
