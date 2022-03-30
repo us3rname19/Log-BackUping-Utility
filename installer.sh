@@ -7,8 +7,10 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 if [[ -n $(cat /etc/os-release |grep debian) ]]; then
-	#sudo apt install -y 
+	echo ""
+    #sudo apt install -y 
 elif [[ -n $(cat /etc/os-release |grep fedora) ]]; then
+    echo ""
     #sudo yum install -y 
 fi
 
