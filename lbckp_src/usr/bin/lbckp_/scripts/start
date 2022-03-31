@@ -41,4 +41,5 @@ for folder in ${logpath[@]}
     done
 
 echo -e "$RED-Backuping logs complited succesfully...$RESETCOLOR"
+/usr/bin/lbckp_/scripts/delld $numDayDel
 

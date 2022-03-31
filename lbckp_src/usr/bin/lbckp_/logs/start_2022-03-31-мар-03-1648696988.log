@@ -1,0 +1,8 @@
+[1;91m-Backuping logs start...[1;00m
+[1;92m-Backuping Linux:/home/us3r/logs/folder_t1 ...[1;00m
+[1;92m-Deleting old logs in Linux:/home/us3r/logs/folder_t1...[1;00m
+[1;92m-Backuping Linux:/home/us3r/logs/folder_t2 ...[1;00m
+[1;92m-Deleting old logs in Linux:/home/us3r/logs/folder_t1...[1;00m
+[1;91m-Backuping logs complited succesfully...[1;00m
+[1;91m-Deleting very old archives(+180 days) in /home/us3r/logs_store ...[1;00m
+
