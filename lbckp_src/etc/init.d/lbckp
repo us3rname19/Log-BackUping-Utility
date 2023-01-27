@@ -71,7 +71,7 @@ $BLUE             ──= Log-BackUping Utility =──
        $CYAN strtcnf$BLUE ──$WHITE Start parameter configuration
        $CYAN shedule$BLUE ──$WHITE Setup backuping in cron scheduler
 
-     $BLUE     ----[ Ansible[remote] features ]----
+     $BLUE         ----[ Remote features ]----
        $CYAN rlist$BLUE ────$WHITE Remote hosts list
        $CYAN rstrt$BLUE ────$WHITE Start backuping remote hosts
        $CYAN rstat$BLUE ────$WHITE Show remote hosts statistic
